@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Title</title>
+    <link rel="icon" href="images/favicon.ico">
+    <title>假日图书馆</title>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
 </head>
@@ -13,30 +14,31 @@
     <h1>假日图书馆信息管理系统</h1>
     <div class="w3l-login-form">
         <h2>登 录</h2>
-        <form action="#" method="post">
+        <form id="login_form" action="#" method="post" onsubmit="return false">
             <div class=" w3l-form-group">
                 <label>用户名:</label>
                 <div class="group">
                     <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
-                    <input type="text" class="form-control" placeholder="用户名" required="required"/>
+                    <input name="userName" type="text" class="form-control" placeholder="用户名" required="required"/>
                 </div>
             </div>
             <div class=" w3l-form-group">
                 <label>密码:</label>
                 <div class="group">
                     <i class="glyphicon glyphicon-lock"></i>
-                    <input type="password" class="form-control" placeholder="密码" required="required" />
+                    <input name="password" type="password" class="form-control" placeholder="密码" required="required" />
                 </div>
             </div>
             <div class="forgot">
                 <a href="#">忘记密码？</a>
                 <p><input type="checkbox">记住我</p>
             </div>
-            <button type="submit">登录</button>
+            <button type="button" onclick="login()">登录</button>
         </form>
         <p class=" w3l-register-p">还没有注册？<a href="#" class="register"> 注册</a></p>
     </div>
 
+    <script src="js/login.js"></script>
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap.js"></script>
 </div>
