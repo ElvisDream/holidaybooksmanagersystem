@@ -126,7 +126,7 @@ a {
     color: #ffffff;
     text-align: center;
     margin: 0px;
-	font-size: 13px;
+    font-size: 13px;
 }
 
 .register {
@@ -199,8 +199,8 @@ footer {
 
 @media(max-width:480px) {
     .w3l-login-form {
-    margin: 0 3vw;
-}
+        margin: 0 3vw;
+    }
     h1 {
         font-size: 38px;
     }
