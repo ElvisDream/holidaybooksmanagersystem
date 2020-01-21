@@ -26,6 +26,16 @@ h2 {
     padding-bottom: 30px;
 }
 
+h4 {
+    margin: 0;
+    color: #ffd2d8ba;
+    font-size: 25px;
+    font-weight: 400;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+
 p.w3l-register-p {
     color: #eee;
     font-size: 13px;
