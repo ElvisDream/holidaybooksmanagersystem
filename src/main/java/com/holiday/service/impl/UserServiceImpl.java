@@ -31,8 +31,8 @@ public class UserServiceImpl extends BaseCustomServiceImpl<UserMapper, User> imp
     public User findByUserInfo(String userName, String pwd) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper
-                .ge("user_name", userName)
-                .ge("user_pwd", pwd);
+                .eq("user_name", userName)
+                .eq("user_pwd", pwd);
         return mapper.selectOne(wrapper);
     }
 }
