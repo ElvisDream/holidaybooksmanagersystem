@@ -11,37 +11,52 @@
 </head>
 <body>
 <div class="container-fluid">
-    <h1>假日图书馆信息管理系统</h1>
-    <div class="w3l-login-form">
-        <h2>登 录</h2>
-        <form id="login_form" action="#" method="post" onsubmit="return false">
-            <div class=" w3l-form-group">
-                <label>用户名:</label>
-                <div class="group">
-                    <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
-                    <input name="userName" type="text" onfocus="clearUserName()" class="form-control" placeholder="用户名" required="required"/>
-                </div>
+    <div style="margin-top: 70px"></div>
+    <div class="login-main row">
+        <!--        登录框左边-->
+        <div class="div_left col-md-8">
+            <div style="border-bottom: 2px solid white;height: 500px"></div>
+            <div style="padding-left: 420px">
+                <h1>假日图书馆管理系统</h1>
             </div>
-            <div class=" w3l-form-group">
-                <label>密码:</label>
-                <div class="group">
-                    <i class="glyphicon glyphicon-lock"></i>
-                    <input name="password" type="password" onfocus="clearUserName()" class="form-control" placeholder="密码" required="required"/>
-                </div>
+        </div>
+        <!--        登录框右边-->
+        <div class="div_right col-md-4">
+            <div style="height: 30%; width: 100%"></div>
+            <div style="width: 100%; height: 70%" class="row">
+                <span style="text-align: center; display: block; font-size: 30px; font-weight: 600; color: #ccab82;">
+                    登 录
+                </span>
+                <form id="login_form" action="#" method="post" onsubmit="return false">
+                    <div class=" w3l-form-group">
+                        <div class="group">
+                            <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
+                            <input name="userName" type="text" onfocus="clearUserName()" class="form-control" placeholder="请输入用户名" required="required"/>
+                        </div>
+                    </div>
+                    <div class=" w3l-form-group">
+                        <div class="group">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <input name="password" type="password" onfocus="clearUserName()" class="form-control" placeholder="请输入密码" required="required"/>
+                        </div>
+                    </div>
+                    <div class="forgot">
+                        <a href="#">忘记密码？</a>
+                        <p><input type="checkbox">记住我</p>
+                    </div>
+                    <button type="button" onclick="login()">登录</button>
+                </form>
+                <p class=" w3l-register-p">还没有注册？<a href="/regist" style="margin: 0 0 !important" class="register"> 注册</a></p>
+                <div id="login-msg-div" style="visibility: visible"><h4><span id="login-msg"></span></h4></div>
             </div>
-            <div class="forgot">
-                <a href="#">忘记密码？</a>
-                <p><input type="checkbox">记住我</p>
-            </div>
-            <button type="button" onclick="login()">登录</button>
-        </form>
-        <p class=" w3l-register-p">还没有注册？<a href="/regist" class="register"> 注册</a></p>
-        <div id="login-msg-div" style="visibility: visible"><h4><span id="login-msg"></span></h4></div>
+        </div>
     </div>
 
-    <script src="js/login.js"></script>
+
     <script src="js/jquery-3.4.1.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/login.js"></script>
+
 </div>
 </body>
 </html>
