@@ -1,24 +1,22 @@
 package com.holiday.entity;
 
-import java.util.Date;
-import javax.validation.constraints.NotNull;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.FieldStrategy;
-import com.diboot.core.entity.BaseEntity;
-import com.diboot.core.binding.query.BindQuery;
-import com.diboot.core.binding.query.Comparison;
+import java.util.Date;
 
 /**
 * 用户表 Entity定义
 * @author Elvis
 * @version 1.0.0
-* @date 2020-01-19
+* @date 2020-01-31
 * Copyright © Elvis.com
 */
+@Data
 public class User extends BaseCustomEntity {
-    private static final long serialVersionUID = 1031569552458161922L;
+    private static final long serialVersionUID = 9055735806515065711L;
 
 
     // 用户名
@@ -57,6 +55,11 @@ public class User extends BaseCustomEntity {
     // 更新时间
     @TableField(insertStrategy = FieldStrategy.NEVER, updateStrategy = FieldStrategy.NOT_NULL)
     private Date updateTime;
+
+    // 邮箱
+    @Length(max=100, message="邮箱长度应小于100")
+    @TableField()
+    private String email;
 
 
     public String getUserName() {
@@ -113,6 +116,13 @@ public class User extends BaseCustomEntity {
     }
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

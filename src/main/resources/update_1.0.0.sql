@@ -78,3 +78,5 @@ CREATE INDEX idx_role_menu_relation ON `role_menu`(menu_id,role_id);
 ALTER TABLE `role_menu` MODIFY COLUMN `menu_id` bigint NOT NULL COMMENT 'menu_id' AFTER `id`;
 -- 2020-01-18 21:24:37 by Elvis
 ALTER TABLE `role_menu` MODIFY COLUMN `role_id` bigint NOT NULL COMMENT 'role_id' AFTER `menu_id`;
+-- 2020-01-31 20:14:09 by Elvis
+ALTER TABLE `user` ADD COLUMN `email` varchar(100) COMMENT '邮箱' AFTER `update_time`;

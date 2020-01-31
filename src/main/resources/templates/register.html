@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>假日图书馆</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="images/favicon.ico">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link rel="stylesheet" href="css/jquery-ui.css"/>
+    <link href="css/regist_style.css" rel="stylesheet" type="text/css" media="all"/><!--stylesheet-->
+    <link rel="stylesheet" href="css/font-awesome.css"><!--font_wesome_icons-->
+</head>
+<body>
+<div class="w3l-head">
+    <h1>假日图书馆信息管理系统</h1>
+</div>
+<div class="w3ls-form">
+    <form id="register_form" action="" method="post" onsubmit="return false">
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">用户名</label>
+                <div class="w3l-div">
+                    <input autocomplete="off" type="text" name="userName" placeholder="请输入用户名" required=""/>
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">性别</label>
+                <div class="w3l-div">
+                    <select name="gender" class="form-control" required="">
+                        <option>请选择</option>
+                        <option value="Male" selected="selected">男生</option>
+                        <option value="Female">女生</option>
+                    </select>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">登录密码</label>
+                <div class="w3l-div">
+                    <input type="password" autocomplete="off" name="userPwd" placeholder="请输入密码" required=""/>
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">确认密码</label>
+                <div class="w3l-div">
+                    <input type="password" name="userPwd" autocomplete="off" placeholder="请确认密码" required=""/>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">邮箱</label>
+                <div class="w3l-div">
+                    <input type="email" autocomplete="off" name="email" placeholder="E-mail"/>
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">电话号码</label>
+                <div class="w3l-div">
+                    <input type="text" autocomplete="off" name="phone" placeholder="Phone number"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="w3l-last-grid1">
+            <div class="w3l-grid1">
+                <label class="text">当前住址</label>
+                <div class="w3l-div">
+                    <input type="text" autocomplete="off" name="address" placeholder="请输入当前住址"/>
+                </div>
+            </div>
+            <div class="w3l-grid2">
+                <label class="text">生日</label>
+                <div class="w3l-div">
+                    <input autocomplete="off" type="text" class="date" id="datepicker" name="date of birth"
+                           placeholder="dob"
+                           value="1/1/1990" onfocus="this.value = '';"
+                           onblur="if (this.value == '') {this.value = '1/1/1990';}"/>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="w3ls-submit">
+            <input type="submit" onclick="register()" value="立即注册">
+        </div>
+    </form>
+    <p class=" w3l-register-p" style="color: honeydew;margin-left: 75%">已有账号？
+        <a href="/login" style="color: darkseagreen" class="register">
+            点此登录
+        </a>
+    </p>
+</div>
+
+<!-- Default-JavaScript -->
+<script src="js/jquery-3.4.1.min.js"></script>
+
+<!-- Calendar -->
+<script src="js/jquery-ui.js"></script>
+<script src="js/register.js"></script>
+<script>
+    $(function () {
+        $("#datepicker,#datepicker1").datepicker();
+    });
+</script>
+<!-- //Calendar -->
+</body>
+</html>

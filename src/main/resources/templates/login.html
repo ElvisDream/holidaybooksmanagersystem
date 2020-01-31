@@ -31,7 +31,7 @@
                     <div class=" w3l-form-group">
                         <div class="group">
                             <i class="glyphicon glyphicon-user" aria-hidden="true"></i>
-                            <input name="userName" type="text" onfocus="clearUserName()" class="form-control" placeholder="请输入用户名" required="required"/>
+                            <input autocomplete="off" name="userName" type="text" onfocus="clearUserName()" class="form-control" placeholder="请输入用户名" required="required"/>
                         </div>
                     </div>
                     <div class=" w3l-form-group">
@@ -46,7 +46,7 @@
                     </div>
                     <button type="button" onclick="login()">登录</button>
                 </form>
-                <p class=" w3l-register-p">还没有注册？<a href="/regist" style="margin: 0 0 !important" class="register"> 注册</a></p>
+                <p class=" w3l-register-p">还没有注册？<a href="/register_index" style="margin: 0 0 !important" class="register"> 注册</a></p>
                 <div id="login-msg-div" style="visibility: visible"><h4><span id="login-msg"></span></h4></div>
             </div>
         </div>
