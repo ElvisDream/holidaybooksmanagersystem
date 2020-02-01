@@ -80,3 +80,11 @@ ALTER TABLE `role_menu` MODIFY COLUMN `menu_id` bigint NOT NULL COMMENT 'menu_id
 ALTER TABLE `role_menu` MODIFY COLUMN `role_id` bigint NOT NULL COMMENT 'role_id' AFTER `menu_id`;
 -- 2020-01-31 20:14:09 by Elvis
 ALTER TABLE `user` ADD COLUMN `email` varchar(100) COMMENT '邮箱' AFTER `update_time`;
+-- 2020-02-01 16:49:15 by Elvis
+ALTER TABLE `user` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `phone`;
+-- 2020-02-01 16:49:15 by Elvis
+ALTER TABLE `user` DROP COLUMN `address`;
+-- 2020-02-01 16:49:15 by Elvis
+ALTER TABLE `user` DROP COLUMN `gender`;
+-- 2020-02-01 16:49:15 by Elvis
+ALTER TABLE `user` DROP COLUMN `birthday`;

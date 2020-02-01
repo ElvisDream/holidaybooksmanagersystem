@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 * 用户表Mapper
 * @author Elvis
 * @version 1.0.0
-* @date 2020-01-31
+* @date 2020-02-01
  * Copyright © Elvis.com
 */
 @Mapper

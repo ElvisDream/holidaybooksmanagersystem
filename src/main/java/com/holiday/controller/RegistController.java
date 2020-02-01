@@ -4,6 +4,7 @@ import com.holiday.entity.User;
 import com.holiday.service.UserService;
 import com.holiday.util.RestResult;
 import com.holiday.util.ResultGenerator;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,11 @@ public class RegistController {
     @ResponseBody
     public RestResult add(@RequestBody User user) {
         String msg;
-        if (user.getUserName().isEmpty() || user.getUserPwd().isEmpty()) {
+        if (userService.findByUserName(user.getUserName()) != null) {
+            msg = "用户已存在";
+            return resultGenerator.getFailResult(msg);
+        }
+        if (StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getUserPwd())) {
             msg = "用户名或密码不能为空";
             return resultGenerator.getFailResult(msg);
         } else {

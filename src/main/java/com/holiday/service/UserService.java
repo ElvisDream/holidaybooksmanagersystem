@@ -12,4 +12,7 @@ import com.holiday.entity.User;
 public interface UserService extends BaseCustomService<User> {
 
     User findByUserInfo(String userName, String pwd);
+
+    User findByUserName(String userName);
+
 }
