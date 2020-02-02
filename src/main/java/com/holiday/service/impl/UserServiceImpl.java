@@ -25,7 +25,7 @@ public class UserServiceImpl extends BaseCustomServiceImpl<UserMapper, User> imp
     private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Resource
-    UserMapper mapper;
+    private UserMapper mapper;
 
     @Override
     public User findByUserInfo(String userName, String pwd) {
