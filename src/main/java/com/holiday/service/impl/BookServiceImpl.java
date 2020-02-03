@@ -37,10 +37,37 @@ public class BookServiceImpl extends BaseCustomServiceImpl<BookMapper, Book> imp
     }
 
     @Override
-    public void updateBookNums(long bookId, int num) {
+    public void minusBookNums(long bookId, int num) {
         Map<String, Object> param = new HashMap<>();
         param.put("bookId", bookId);
         param.put("num", num);
-        bookMapper.updateBookNums(param);
+        bookMapper.minusBookNums(param);
     }
+
+    @Override
+    public void addBookNums(long bookId, int num) {
+        Map<String, Object> param = new HashMap<>();
+        param.put("bookId", bookId);
+        param.put("num", num);
+        bookMapper.addBookNums(param);
+    }
+
+    @Override
+    public List<Book> queryBooksByCondition(String bookName, String bookCode, String author) {
+        QueryWrapper<Book> wrapper = new QueryWrapper<>();
+        wrapper.gt("book_nums", 0);
+        if (bookName != null && !"".equals(bookName)) {
+            wrapper.like("book_name", bookName);
+        }
+        if (bookCode != null && !"".equals(bookCode)) {
+            wrapper.like("book_code", bookCode);
+        }
+        if (author != null && !"".equals(author)) {
+            wrapper.like("author", author);
+        }
+
+        return bookMapper.selectList(wrapper);
+
+    }
+
 }

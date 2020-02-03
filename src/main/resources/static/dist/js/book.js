@@ -1,17 +1,29 @@
 var booksData;
 var currentBook;
+//初始化书籍界面
+function init() {
+    let books = queryBookByInfo();
+    loadAllBooks(books);
+}
+
 $(function () {
-    init();
+    //借书
     $("#rentModal").on('hide.bs.modal', function () {
         $("#rentModal-div-left").empty();
         $("#rentModal-div-right").empty();
-        init();
     });
+    //还书
+    $("#returnModal").on('hide.bs.modal', function () {
+        $("#returnModal-div-left").empty();
+        $("#returnModal-div-right").empty();
+    });
+
+    //借书确认按钮事件处理
     $("#rentModal-btn-sure").click(function () {
         const rentNum = $("#rent-div-nums").val();
         const regExp = /^[1-9]*[1-9][0-9]*$/;
         if (!regExp.test(rentNum)) {
-            alert("请输入正确的数量");
+            alert("请输入正确的数量!!!");
             return false;
         }
         if (currentBook.bookNums < rentNum) {
@@ -26,6 +38,7 @@ $(function () {
             success: function (res) {
                 if (res.code === 200) {
                     $("#rentModal").modal('hide');
+                    init();
                 }
             },
             error: function () {
@@ -33,27 +46,64 @@ $(function () {
             }
         });
     });
+
+    //还书确认按钮事件处理
+    $("#returnModal-btn-sure").click(function () {
+        const returnNum = $("#return-div-nums").val();
+        const regExp = /^[1-9]*[1-9][0-9]*$/;
+        if (!regExp.test(returnNum)) {
+            alert("请输入正确的数量");
+            return false;
+        }
+        $.ajax({
+            type: 'post',
+            dataType: 'JSON',
+            url: '/book/return',
+            data: "bookId=" + currentBook.id + "&num=" + returnNum,
+            success: function (res) {
+                if (res.code === 200) {
+                    $("#returnModal").modal('hide');
+                    init();
+                }
+            },
+            error: function () {
+                console.log("异常！")
+            }
+        });
+    });
+
+    $("#bookQuery-btn").click(function () {
+        const bookName = $("#bookName-search").val();
+        const author = $("#author-search").val();
+        const bookCode = $("#bookCode-search").val();
+        let searchData = '';
+        if (bookName !== '' && bookName !== 'null') {
+            searchData += 'bookName=' + bookName + '&';
+        }
+        if (author !== '' && author !== 'null') {
+            searchData += 'author=' + author + '&';
+        }
+        if (bookCode !== '' && bookCode !== 'null') {
+            searchData += 'bookCode=' + bookCode + '&';
+        }
+        queryBookByInfo(searchData.substr(0, searchData.length - 1));
+    });
 });
 
-//初始化书籍界面
-function init() {
-    $("#row-book").empty();
-    let books = getAllData();
-    loadAllBooks(books);
-}
-
 //获取所有书籍信息
-function getAllData() {
+function queryBookByInfo(searchData) {
     let allBooks = {};
     $.ajax({
-        type: 'GET',
-        url: '/book/all',
-        async: false,
+        type: 'get',
+        dataType: 'JSON',
+        url: '/book/queryBookByInfo',
+        async:false,
+        data: searchData,
         success: function (res) {
-            allBooks = res.data;
-        },
-        error: function () {
-            console.log("异常");
+            if (res.code === 200) {
+                allBooks = res.data;
+                loadAllBooks(res.data);
+            }
         }
     });
     booksData = allBooks;
@@ -62,6 +112,7 @@ function getAllData() {
 
 //动态加载书籍信息
 function loadAllBooks(books) {
+    $("#row-book").empty();
     $.each(books, function (id, book) {
         $("#row-book").append(`<div class="col-md-2 book-outer-div"
              style="height: 392px; margin-right: 22px;margin-top: 22px; padding:0; border: solid 1px lightgrey">
@@ -79,7 +130,7 @@ function loadAllBooks(books) {
                            style="width: 240px;margin: 4px auto"
                            value="借书">
                     <input type="button" id='returnBookBtn_${book.id}' bookId='${book.id}' data-toggle="modal" data-target="#returnModal" 
-                    onclick="returnBook()" class="btn btn-block btn-outline-danger btn-sm"
+                    onclick="returnBook(this)" class="btn btn-block btn-outline-danger btn-sm"
                            style="width: 240px;margin: 4px auto"
                            value="还书">
                 </div>
@@ -103,17 +154,37 @@ function rentBook(btn) {
                     <li>书籍名称：${book.bookName}</li>
                     <li>价格：${book.price}</li>
                     <li>编号：${book.bookCode}</li>
+                    <li>当前书籍剩余：<span style="color: red;font-size: larger">${book.bookNums}</span>本</li>
                     <li>借出时间：${now}</li>
                     <li>借书人：${userName}</li>
-                    <li>借出数量：<input id="rent-div-nums" autofocus="autofocus" autocomplete="off" type="text" value="1"></li>
+                    <li>借出数量：<input id="rent-div-nums" autocomplete="off" type="text" value="1"></li>
                 </ul>`);
         }
     });
 }
 
 //还书处理
-function returnBook() {
-    console.log("return book")
+function returnBook(btn) {
+    const bookId = $(btn).attr('bookId');
+    const now = getCurrentDate();
+    const userName = $.cookie("userName");
+    // language=HTML
+    $.each(booksData, function (id, book) {
+        if (book.id == bookId) {
+            currentBook = book;
+            $("#returnModal-div-left").append(`<img src='${book.iconAddress}'>`);
+            $("#returnModal-div-right").append(`
+                <ul style="list-style-type: none">
+                    <li>书籍名称：${book.bookName}</li>
+                    <li>价格：${book.price}</li>
+                    <li>编号：${book.bookCode}</li>
+                    <li>当前书籍剩余：<span style="color: red;font-size: larger">${book.bookNums}</span>本</li>
+                    <li>借出时间：${now}</li>
+                    <li>借书人：${userName}</li>
+                    <li>归还数量：<input id="return-div-nums" autocomplete="off" type="text" value="1"></li>
+                </ul>`);
+        }
+    });
 }
 
 function getNow(s) {

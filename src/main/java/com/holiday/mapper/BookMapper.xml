@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "./mybatis-3-mapper.dtd">
 <mapper namespace="com.holiday.mapper.BookMapper">
-    <update id="updateBookNums" parameterType="java.util.Map">
+
+<!--    减少书籍库存-->
+    <update id="minusBookNums" parameterType="java.util.Map">
         update book set book_nums = book_nums-#{num},update_time = NOW() where id = #{bookId} and book_nums >= #{num}
     </update>
+
+<!--    增加书籍库存-->
+    <update id="addBookNums" parameterType="java.util.Map">
+        update book set book_nums = book_nums+#{num},update_time = NOW() where id = #{bookId}
+    </update>
+
 </mapper>

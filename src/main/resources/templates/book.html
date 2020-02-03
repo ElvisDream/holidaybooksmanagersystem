@@ -22,10 +22,47 @@
         }
     </style>
 </head>
-<body>
-<div style="width: 100%;height: 40px;background: gainsboro">
+<body onload="init()">
+<!--边框查询-->
+<div class="col-12 col-md-12">
+    <nav class="navbar navbar-expand navbar-light">
+        <!-- Left navbar links -->
+       <!-- <ul class="navbar-nav">
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+            </li>
+        </ul>
+-->
+        <!-- SEARCH FORM -->
+        <form class="form-inline ml-3" onsubmit="return false" action="#">
+            <div class="input-group input-group-sm" style="margin-right: 20px">
+                <input class="form-control form-control-navbar" id="bookName-search" type="search" placeholder="书籍名称" aria-label="Search">
+                <!--<div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>-->
+            </div>
+            <div class="input-group input-group-sm" style="margin-right: 20px">
+                <input class="form-control form-control-navbar" id="author-search" type="search" placeholder="作者" aria-label="Search">
+            </div>
+            <div class="input-group input-group-sm" style="margin-right: 20px">
+                <input class="form-control form-control-navbar" id="bookCode-search" type="search" placeholder="书籍编号" aria-label="Search">
+            </div>
 
+            <div class="input-group-append">
+                <button class="btn btn-navbar" id="bookQuery-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+
+    </nav>
 </div>
+<!--书籍展示部分-->
 <div class="container-fluid">
     <div class="row" id="row-book" style="padding-left: 22px"></div>
 </div>
@@ -47,8 +84,7 @@
                 <div class="container-fluid">
                     <div class="row" id="rentModal-div">
                         <div class="col-md-6" id="rentModal-div-left"></div>
-                        <div class="col-md-6" id="rentModal-div-right">
-                        </div>
+                        <div class="col-md-6" id="rentModal-div-right"></div>
                     </div>
                 </div>
             </div>
@@ -78,19 +114,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                在这里添加一些文本
+                <div class="container-fluid">
+                    <div class="row" id="returnModal-div">
+                        <div class="col-md-6" id="returnModal-div-left"></div>
+                        <div class="col-md-6" id="returnModal-div-right"></div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">
+                <button type="button" class="btn btn-default" id="returnModal-btn-cancle" data-dismiss="modal">
                     取消
                 </button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">
+                <button type="button" class="btn btn-primary" id="returnModal-btn-sure" data-dismiss="modal">
                     确定
                 </button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
+
 <!-- jQuery -->
 <script src="../plugins/jquery/jquery.min.js"></script>
 <script src="../dist/js/jquery.cookie.js"></script>

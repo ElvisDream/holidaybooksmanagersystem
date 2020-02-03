@@ -24,6 +24,21 @@ public interface BookService extends BaseCustomService<Book> {
      *
      * @param num
      */
-    void updateBookNums(long bookId, int num);
+    void minusBookNums(long bookId, int num);
 
+    /**
+     * 增加书籍库存
+     * @param bookId
+     * @param num
+     */
+    void addBookNums(long bookId, int num);
+
+    /**
+     * 根据条件查询书籍
+     * @param bookName
+     * @param bookCode
+     * @param author
+     * @return
+     */
+    List<Book> queryBooksByCondition(String bookName, String bookCode, String author);
 }

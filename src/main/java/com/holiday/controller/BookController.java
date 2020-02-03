@@ -8,10 +8,7 @@ import com.holiday.vo.BookVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 书籍表 相关Controller
@@ -39,7 +36,18 @@ public class BookController extends BaseCrudMappingRestController<Book, BookVO> 
 
     @DeleteMapping("/rent")
     public RestResult rentBook(long bookId, int num) {
-        bookService.updateBookNums(bookId, num);
+        bookService.minusBookNums(bookId, num);
         return resultGenerator.getSuccessResult();
+    }
+
+    @PostMapping("/return")
+    public RestResult returnBook(long bookId, int num) {
+        bookService.addBookNums(bookId, num);
+        return resultGenerator.getSuccessResult();
+    }
+
+    @GetMapping("queryBookByInfo")
+    public RestResult queryBookByInfo(String bookName, String bookCode, String author) {
+        return resultGenerator.getSuccessResult(bookService.queryBooksByCondition(bookName, bookCode, author));
     }
 }

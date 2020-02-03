@@ -22,7 +22,13 @@ public interface BookMapper extends BaseCrudMapper<Book> {
      *
      * @param params
      */
-    void updateBookNums(Map<String,Object> params);
+    void minusBookNums(Map<String,Object> params);
+
+    /**
+     * 增加库存
+     * @param params
+     */
+    void addBookNums(Map<String, Object> params);
 
 }
 
