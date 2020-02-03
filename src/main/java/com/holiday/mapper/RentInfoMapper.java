@@ -4,6 +4,8 @@ import com.diboot.core.mapper.BaseCrudMapper;
 import com.holiday.entity.RentInfo;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 /**
 * 租借表Mapper
 * @author Elvis
@@ -14,5 +16,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface RentInfoMapper extends BaseCrudMapper<RentInfo> {
 
+    /**
+     * 记录用户借书信息
+     *
+     * @param params
+     */
+    void addOrUpdateRentInfo(Map<String, Object> params);
 }
 

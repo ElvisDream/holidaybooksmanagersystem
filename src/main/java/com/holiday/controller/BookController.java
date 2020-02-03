@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 书籍表 相关Controller
  *
@@ -35,15 +37,20 @@ public class BookController extends BaseCrudMappingRestController<Book, BookVO> 
     }
 
     @DeleteMapping("/rent")
-    public RestResult rentBook(long bookId, int num) {
-        bookService.minusBookNums(bookId, num);
+    public RestResult rentBook(long bookId, int num, HttpServletRequest request) {
+
+        bookService.minusBookNums(bookId, num, (Long) request.getSession().getAttribute("userId"));
         return resultGenerator.getSuccessResult();
     }
 
     @PostMapping("/return")
-    public RestResult returnBook(long bookId, int num) {
-        bookService.addBookNums(bookId, num);
-        return resultGenerator.getSuccessResult();
+    public RestResult returnBook(long bookId, int num, HttpServletRequest request) {
+        String msg = bookService.addBookNums(bookId, num, (Long) request.getSession().getAttribute("userId"));
+        if (msg == null || "".equals(msg)) {
+            return resultGenerator.getSuccessResult();
+        } else {
+            return resultGenerator.getFailResult(msg);
+        }
     }
 
     @GetMapping("queryBookByInfo")

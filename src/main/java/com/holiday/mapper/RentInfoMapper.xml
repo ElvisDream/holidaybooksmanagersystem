@@ -2,4 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "./mybatis-3-mapper.dtd">
 <mapper namespace="com.holiday.mapper.RentInfoMapper">
 
+    <insert id="addOrUpdateRentInfo" parameterType="java.util.Map">
+
+
+        <selectKey keyProperty="count" resultType="int" order="BEFORE">
+            select count(1) from rent_info where user_id = #{userId} and book_id = #{bookId} and is_deleted = 0
+        </selectKey>
+
+        <if test="count==0">
+            insert into rent_info(user_id,book_id,is_deleted,create_time,book_nums)
+            value(#{userId},#{bookId},0,Now(),#{bookNums})
+        </if>
+
+        <if test="count>0">
+            update rent_info set book_nums = book_nums + #{bookNums}
+            where user_id = #{userId} and book_id = #{bookId} and is_deleted = 0
+        </if>
+
+    </insert>
 </mapper>

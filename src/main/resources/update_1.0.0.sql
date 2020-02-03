@@ -88,3 +88,7 @@ ALTER TABLE `user` DROP COLUMN `address`;
 ALTER TABLE `user` DROP COLUMN `gender`;
 -- 2020-02-01 16:49:15 by Elvis
 ALTER TABLE `user` DROP COLUMN `birthday`;
+-- 2020-02-03 14:20:30 by Elvis
+ALTER TABLE `rent_info` ADD COLUMN `book_nums` int(8) COMMENT '书籍数量' AFTER `book_id`;
+-- 2020-02-03 14:20:30 by Elvis
+ALTER TABLE `rent_info` MODIFY COLUMN `is_deleted` tinyint(1) NOT NULL DEFAULT 0 COMMENT '删除标记' AFTER `book_nums`;

@@ -32,6 +32,7 @@ public class LoginController {
         if (loginUser == null) {
             return resultGenerator.getFailResult("用户名或密码不正确！");
         } else {
+            request.getSession().setAttribute("userId", loginUser.getId());
             request.getSession().setAttribute("userName", userName);
             request.getSession().setAttribute("userPwd", password);
             return resultGenerator.getSuccessResult(loginUser);

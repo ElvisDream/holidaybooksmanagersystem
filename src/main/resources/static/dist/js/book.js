@@ -1,5 +1,6 @@
 var booksData;
 var currentBook;
+
 //初始化书籍界面
 function init() {
     let books = queryBookByInfo();
@@ -65,9 +66,9 @@ $(function () {
                     $("#returnModal").modal('hide');
                     init();
                 }
-            },
-            error: function () {
-                console.log("异常！")
+                if (res.code === 400) {
+                    alert(res.message);
+                }
             }
         });
     });
@@ -97,7 +98,7 @@ function queryBookByInfo(searchData) {
         type: 'get',
         dataType: 'JSON',
         url: '/book/queryBookByInfo',
-        async:false,
+        async: false,
         data: searchData,
         success: function (res) {
             if (res.code === 200) {

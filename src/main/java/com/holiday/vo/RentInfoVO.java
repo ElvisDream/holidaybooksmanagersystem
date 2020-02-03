@@ -4,17 +4,17 @@ import com.diboot.core.binding.annotation.*;
 import com.holiday.entity.RentInfo;
 import com.holiday.entity.User;
 import com.holiday.entity.Book;
-
 import java.util.List;
 
 /**
-* 租借表 VO定义
-* @author Elvis
-* @version 1.0.0
-* @date 2020-01-18
+ * 租借表 VO定义
+ * @author Elvis
+ * @version 1.0.0
+ * @date 2020-01-18
  * Copyright © Elvis.com
-*/
-public class RentInfoVO extends RentInfo  {
+ */
+public class RentInfoVO extends RentInfo {
+
     private static final long serialVersionUID = -4277569026017529781L;
 
     // 字段关联：this.user_id=id
@@ -40,5 +40,4 @@ public class RentInfoVO extends RentInfo  {
     public void setBook(Book book) {
         this.book = book;
     }
-
 }

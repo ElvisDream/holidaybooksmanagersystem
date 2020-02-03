@@ -30,5 +30,11 @@ public interface BookMapper extends BaseCrudMapper<Book> {
      */
     void addBookNums(Map<String, Object> params);
 
+    /**
+     * 查询借书数量
+     * @param params
+     * @return
+     */
+    Object queryRentNums(Map<String, Object> params);
 }
 

@@ -9,7 +9,11 @@
 
 <!--    增加书籍库存-->
     <update id="addBookNums" parameterType="java.util.Map">
-        update book set book_nums = book_nums+#{num},update_time = NOW() where id = #{bookId}
+        update book set book_nums = book_nums+#{bookNums},update_time = NOW() where id = #{bookId}
     </update>
+
+    <select id="queryRentNums" resultType="java.lang.Object">
+        select book_nums from rent_info where user_id = #{userId} and book_id = #{bookId}
+    </select>
 
 </mapper>

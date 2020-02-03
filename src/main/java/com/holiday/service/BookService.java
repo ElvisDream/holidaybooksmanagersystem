@@ -24,14 +24,14 @@ public interface BookService extends BaseCustomService<Book> {
      *
      * @param num
      */
-    void minusBookNums(long bookId, int num);
+    void minusBookNums(long bookId, int num, long userId);
 
     /**
      * 增加书籍库存
      * @param bookId
      * @param num
      */
-    void addBookNums(long bookId, int num);
+    String addBookNums(long bookId, int num, long userId);
 
     /**
      * 根据条件查询书籍
