@@ -4,6 +4,8 @@ import com.diboot.core.mapper.BaseCrudMapper;
 import com.holiday.entity.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
 * 用户表Mapper
 * @author Elvis
